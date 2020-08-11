@@ -19,7 +19,7 @@ def get_links_dict(html):
             name = i.find_all('a')[0].text
             key = "{}{}".format(name,'.csv')
         except:
-            name = ''
+            key = ''
             
     links = i.find_all('a', class_ ='charticon2')
     for i in links:
@@ -27,7 +27,7 @@ def get_links_dict(html):
             link = i.get('href')
             value = '{}{}{}'.format('https://smart-lab.ru', link, 'MSFO/download/')
         except:
-            link = ''
+            value = ''
         data = {key:value}
         data_links.update(data)
     return data_links
