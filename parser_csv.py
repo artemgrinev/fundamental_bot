@@ -21,15 +21,15 @@ def get_links_dict(html):
         except:
             key = ''
             
-    links = i.find_all('a', class_ ='charticon2')
-    for i in links:
-        try:
-            link = i.get('href')
-            value = '{}{}{}'.format('https://smart-lab.ru', link, 'MSFO/download/')
-        except:
-            value = ''
-        data = {key:value}
-        data_links.update(data)
+        links = i.find_all('a', class_ ='charticon2')
+        for i in links:
+            try:
+                link = i.get('href')
+                value = '{}{}{}'.format('https://smart-lab.ru', link, 'MSFO/download/')
+            except:
+                value = ''
+            data = {key:value}
+            data_links.update(data)
     return data_links
 
 
@@ -43,7 +43,7 @@ def get_file(links):
             f.write(ufr.content)
             f.close()
 
-            df = pd.read_csv(FILENAME, delimiter=';')[['Unnamed: 0', '2016', '2017', '2018', '2019', 'LTM']]
+            df = pd.read_csv(FILENAME, delimiter=';')[['Unnamed: 0', '2016', '2017', '2018', '2019']]
             df.to_csv(NEWNAME, index=False)
 
             print('file {} is written'.format(NEWNAME))
